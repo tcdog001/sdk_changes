@@ -11,7 +11,7 @@ SAMPLE_DIR=${SDK_DIR}/sample
 SCRIPTS_DIR=${SDK_DIR}/scripts
 SOURCE_DIR=${SDK_DIR}/source
 TOOLS_DIR=${SDK_DIR}/tools/linux
-AUTELAN_DIR=${SDK_DIR}/autelan
+AUTELAN_DIR=${SDK_DIR}/../autelan_scripts
 CFG_HI_BASE_ENV=" SDK_DIR CFGS_DIR PUB_DIR SAMPLE_DIR SCRIPTS_DIR SOURCE_DIR TOOLS_DIR AUTELAN_DIR "
 #=============SRC_DIR======================================================================
 MSP_DIR=${SOURCE_DIR}/msp
