@@ -7,25 +7,158 @@
 
 #define BOOTENV_MMCBLK          "/dev/mmcblk0p2"
 
+static int
+env_common_check(char *value, char *array[], int count)
+{
+    int i;
+
+    for (i=0; i<count; i++) {
+        if (0!=strcmp(array[i], value)) {
+            return -1;
+        }
+    }
+
+    return 0;
+}
+
+static int
+env_rootfs_check(char *value)
+{
+    static char *array[] = { "0", "1", "2" };
+
+    return env_common_check(value, array, countof_array(array));
+}
+
+static int
+env_rootfsx_check(char *value)
+{
+    static char *array[] = { "o", "v", "f" };
+
+    return env_common_check(value, array, countof_array(array));
+}
+
+static int
+env_rootfsxerr_check(char *value)
+{
+    static char *array[] = { "0", "1", "2", "3" };
+
+    return env_common_check(value, array, countof_array(array));
+}
+
+#if 0
+#define ROOTFS_VER_COUNT    4
+#define ROOTFS_VER_MIN      0
+#define ROOTFS_VER_MAX      9999
+
+static int
+env_rootfsxver_check(char *value)
+{
+    int err = 0;
+    int ver[ROOTFS_VER_COUNT];
+    int i;
+    
+    err = sscanf(value, "%d.%d.%d.%d", &ver[0], &ver[1], &ver[2], &ver[3]);
+    if (err<0) {
+        return errno;
+    }
+
+    for (i=0; i<ROOTFS_VER_COUNT; i++) {
+        if (ver[i] < ROOTFS_VER_MIN || ver[i] > ROOTFS_VER_MAX) {
+            return -1;
+        }
+    }
+    
+    return 0;
+}
+#endif
+
+#define BOOT_VER_COUNT      2
+#define BOOT_VER_MIN        0
+#define BOOT_VER_MAX        9999
+
+static int
+env_bootver_check(char *value)
+{
+    int err = 0;
+    int ver[BOOT_VER_COUNT];
+    int i;
+    
+    err = sscanf(value, "%d.%d", &ver[0], &ver[1]);
+    if (err<0) {
+        return errno;
+    }
+
+    for (i=0; i<BOOT_VER_COUNT; i++) {
+        if (ver[i] < BOOT_VER_MIN || ver[i] > BOOT_VER_MAX) {
+            return -1;
+        }
+    }
+    
+    return 0;
+}
+
 #define ENV_NAME_LEN            15
 #define ENV_CHANGED             0x01
-#define ENV_INIT(_idx, _name)   [_idx] = { .name = _name, .flag = 0 }
+#define ENV_HIDDEN              0x02
+#define ENV_READONLY            0x04
+
+#define ENV_INITER(_name, _flag, _check) { \
+    .name = _name,      \
+    .flag = _flag,      \
+    .check = _check,    \
+}
+
+#define ENV(_idx, _name, _flag, _check) \
+    [_idx] = ENV_INITER(_name, _flag, _check)
 
 static struct {
     char name[1+ENV_NAME_LEN];
     int flag;
+    int (*check)(char *value);
 } envctl[AT_ENV_COUNT] = {
-    ENV_INIT(AT_ENV_INIT,       AT_NAME_INIT),
-    ENV_INIT(AT_ENV_ROOTFS,     AT_NAME_ROOTFS),
-    ENV_INIT(AT_ENV_ROOTFS1,    AT_NAME_ROOTFS1),
-    ENV_INIT(AT_ENV_ROOTFS1ERR, AT_NAME_ROOTFS1ERR),
-    ENV_INIT(AT_ENV_ROOTFS2,    AT_NAME_ROOTFS2),
-    ENV_INIT(AT_ENV_ROOTFS2ERR, AT_NAME_ROOTFS2ERR),
-    ENV_INIT(AT_ENV_MAC,        AT_NAME_MAC),
-    ENV_INIT(AT_ENV_SN,         AT_NAME_SN),
-    ENV_INIT(AT_ENV_BOARDTYPE,  AT_NAME_BOARDTYPE),
-    ENV_INIT(AT_ENV_BOARDVERSION, AT_NAME_BOARDVERSION),
+    [0 ... (AT_ENV_COUNT-1)] = ENV_INITER("", ENV_HIDDEN, NULL),
+    
+    ENV(AT_ENV_INIT,    AT_NAME_INIT,       ENV_HIDDEN | ENV_READONLY, NULL),
+    ENV(AT_ENV_BOOTVER, AT_NAME_BOOTVER,    ENV_HIDDEN | ENV_READONLY,  NULL),
+    
+    ENV(AT_ENV_OEM_MAC,         AT_NAME_OEM_MAC,            ENV_HIDDEN, NULL),
+    ENV(AT_ENV_OEM_SN,          AT_NAME_OEM_SN,             ENV_HIDDEN, NULL),
+    ENV(AT_ENV_OEM_BOARDTYPE,   AT_NAME_OEM_BOARDTYPE,      ENV_HIDDEN, NULL),
+    ENV(AT_ENV_OEM_BOARDVERSION,AT_NAME_OEM_BOARDVERSION,   ENV_HIDDEN, NULL),
+    
+    ENV(AT_ENV_MAC,         AT_NAME_MAC,            0,  NULL),
+    ENV(AT_ENV_SN,          AT_NAME_SN,             0,  NULL),
+    ENV(AT_ENV_BOARDTYPE,   AT_NAME_BOARDTYPE,      0,  NULL),
+    ENV(AT_ENV_BOARDVERSION,AT_NAME_BOARDVERSION,   0,  NULL),
+    
+    ENV(AT_ENV_ROOTFS,      AT_NAME_ROOTFS,     0,  env_rootfs_check),
+    
+    ENV(AT_ENV_ROOTFS0,     AT_NAME_ROOTFS0,    0,  env_rootfsx_check),
+    ENV(AT_ENV_ROOTFS1,     AT_NAME_ROOTFS1,    0,  env_rootfsx_check),
+    ENV(AT_ENV_ROOTFS2,     AT_NAME_ROOTFS2,    0,  env_rootfsx_check),
+    
+    ENV(AT_ENV_ROOTFS0ERR,  AT_NAME_ROOTFS0ERR, 0,  env_rootfsxerr_check),
+    ENV(AT_ENV_ROOTFS1ERR,  AT_NAME_ROOTFS1ERR, 0,  env_rootfsxerr_check),
+    ENV(AT_ENV_ROOTFS2ERR,  AT_NAME_ROOTFS2ERR, 0,  env_rootfsxerr_check),
+
+#if 0
+    ENV(AT_ENV_ROOTFS0VER,  AT_NAME_ROOTFS0VER, ENV_HIDDEN,  env_rootfsxver_check),
+    ENV(AT_ENV_ROOTFS1VER,  AT_NAME_ROOTFS1VER, ENV_HIDDEN,  env_rootfsxver_check),
+    ENV(AT_ENV_ROOTFS2VER,  AT_NAME_ROOTFS2VER, ENV_HIDDEN,  env_rootfsxver_check),
+#endif
+
+    ENV(AT_ENV_PTEST, "idx99", 0, NULL);
 };
+
+static int
+env_check(int idx, char *value)
+{
+    if (NULL==envctl[idx].check || 0==(*envctl[idx].check)(value)) {
+        return 0;
+    } else {
+        return -1;
+    }
+}
 
 static char bootenv[AT_ENV_COUNT][AT_ENV_LINE_SIZE];
 
@@ -117,8 +250,8 @@ env_read(FILE *f)
 
 void usage(int argc, char *argv[])
 {
-    println("%s ==> get all env", argv[0]);
-    println("%s name ==> get env by name", argv[0]);
+    println("%s ==> show all env", argv[0]);
+    println("%s name ==> show env by name", argv[0]);
     println("%s name1=value1 name2=value2 ... ==> set env by name and value", argv[0]);
 }
 
@@ -177,7 +310,7 @@ int main(int argc, char *argv[])
     */
     if (1==argc) {
         for (i=1; i<AT_ENV_COUNT; i++) {
-            if (bootenv[i][0]) {
+            if (bootenv[i][0] && !(ENV_HIDDEN & envctl[i].flag)) {
                 println("%s=%s", envctl[i].name, bootenv[i]);
             }
         }
@@ -268,10 +401,21 @@ int main(int argc, char *argv[])
 
             err = -1; goto exit;
         }
+        else if (env_check(idx, value) < 0) {
+            println("argv[%d](%s) value is invalid", i, argv[i]);
+
+            err = -1; goto exit;
+        }
+        else if (ENV_READONLY & envctl[idx].flag) {
+            println("argv[%d](%s) is readonly", i, argv[i]);
+
+            err = -1; goto exit;
+        }
         else {
             strcpy(bootenv[idx], value);
+            
+            envctl[idx].flag |= ENV_CHANGED;
         }
-        envctl[idx].flag |= ENV_CHANGED;
     }
     
     if (env_write(f)) {

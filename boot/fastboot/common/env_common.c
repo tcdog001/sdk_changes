@@ -80,6 +80,8 @@ uchar default_environment[] = {
         " "                     \
     "rootwait"                  \
         " "                     \
+    "ro"                        \
+        " "                     \
     "blkdevparts="              \
         "mmcblk0:"              \
         "512K(boot),"           \
@@ -552,10 +554,15 @@ static void
 rootfs_init(void) 
 {
     atenv_init(AT_ENV_INIT,         AT_DEFT_INIT);
+    atenv_init(AT_ENV_BOOTVER,      AT_DEFT_BOOTVER);
     atenv_init(AT_ENV_ROOTFS,       AT_DEFT_ROOTFS);
+    
+    atenv_init(AT_ENV_ROOTFS0,      AT_DEFT_ROOTFS0);
     atenv_init(AT_ENV_ROOTFS1,      AT_DEFT_ROOTFS1);
-    atenv_init(AT_ENV_ROOTFS1ERR,   AT_DEFT_ROOTFS1ERR);
     atenv_init(AT_ENV_ROOTFS2,      AT_DEFT_ROOTFS2);
+    
+    atenv_init(AT_ENV_ROOTFS0ERR,   AT_DEFT_ROOTFS0ERR);
+    atenv_init(AT_ENV_ROOTFS1ERR,   AT_DEFT_ROOTFS1ERR);
     atenv_init(AT_ENV_ROOTFS2ERR,   AT_DEFT_ROOTFS2ERR);
 }
 
