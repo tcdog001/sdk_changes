@@ -79,7 +79,7 @@ HI_S32 main(HI_S32 argc, HI_CHAR **argv)
 			SHIFT(data, 14) * 64;
 	
 	if (data & 0x8000) 
-		temp = -1.0 * temp;
+		temp = temp - 128;
 	
 	HI_INFO_I2C("\nBoard temperature: %3.4f\n\n", temp);
 
