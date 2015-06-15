@@ -158,7 +158,7 @@ read_rtc_and_config_date(HI_U8 *pData)
 	year = ((year_data >> 4) & 0xf) * 10 + (year_data & 0xf);
 
 	memset(Cmd, 0, 128);
-    sprintf(Cmd, "date %c%04d-%02d-%02d %02d:%02d:%02d%c", fen, year+2000, month, date,
+	sprintf(Cmd, "date -s %c%04d-%02d-%02d %02d:%02d:%02d%c", fen, year+2000, month, date,
         	hour, min, sec, fen);
 
 	system(Cmd);

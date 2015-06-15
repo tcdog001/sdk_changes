@@ -26,7 +26,7 @@ HI_S32 main(HI_S32 argc, HI_CHAR **argv)
 	HI_U8 sec_data = 0, sec = 0, min_data = 0, min = 0, hour_data = 0, hour = 0;
 	HI_U8 day = 0, date_data = 0, date = 0, month_data = 0, month = 0, year_data = 0, year = 0;
 	HI_U8 mode, am_pm = 0;
-	HI_U8 *week[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
+	char *week[] = {"Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"};
 	HI_U32 u32DeviceAddress = 0xd0;
     HI_U32 u32I2cNum  = 0;
     HI_U32 u32RegAddr = 0x0;
