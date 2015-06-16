@@ -97,7 +97,8 @@ autelan_install:
 	make -C $(AUTELAN_DIR) install
 	mkdir -p $(ROOTBOX_DIR)/image/
 	cp -f $(IMAGE_DIR)/fastboot-burn.bin  $(ROOTFS_DIR)/image/
-	cp -f $(IMAGE_DIR)/hi_kernel.bin  $(ROOTFS_DIR)/image/
+#	use release/image/hi_kernel.bin by autelan.rootfs
+#	cp -f $(IMAGE_DIR)/hi_kernel.bin  $(ROOTFS_DIR)/image/
 	cp -f $(IMAGE_DIR)/pq_param_hi3718cv100.bin  $(ROOTFS_DIR)/image/
 autelan_uninstall:
 	make -C $(AUTELAN_DIR) uninstall
