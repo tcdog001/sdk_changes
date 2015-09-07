@@ -31,9 +31,11 @@
 #define AT_ENV_BOARDVERSION     9
 #define AT_ENV_PSN              10
 #define AT_ENV_MID              11
+#if 0
 #define AT_ENV_ROOTFS0VER       12
 #define AT_ENV_ROOTFS1VER       13
 #define AT_ENV_ROOTFS2VER       14
+#endif
 #define AT_ENV_BOOTVER          15
 
 #define AT_ENV_OEM_MAC          36
@@ -58,15 +60,15 @@
 #define AT_NAME_INIT                "init"
 #define AT_NAME_BOOTVER             "bootver"
 #define AT_NAME_ROOTFS              "rootfs"
-#define AT_NAME_ROOTFS0             "rootfs0"
 #define AT_NAME_ROOTFS1             "rootfs1"
 #define AT_NAME_ROOTFS2             "rootfs2"
-#define AT_NAME_ROOTFS0ERR          "rootfs0err"
 #define AT_NAME_ROOTFS1ERR          "rootfs1err"
 #define AT_NAME_ROOTFS2ERR          "rootfs2err"
+#if 0
 #define AT_NAME_ROOTFS0VER          "rootfs0ver"
 #define AT_NAME_ROOTFS1VER          "rootfs1ver"
 #define AT_NAME_ROOTFS2VER          "rootfs2ver"
+#endif
 #define AT_NAME_PSN                 "psn"
 #define AT_NAME_MID                 "mid"
 #define AT_NAME_MAC                 "pcba.mac"

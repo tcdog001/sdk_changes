@@ -147,7 +147,7 @@ static struct {
     ENV(AT_ENV_ROOTFS2VER,  AT_NAME_ROOTFS2VER, ENV_HIDDEN,  env_rootfsxver_check),
 #endif
 
-    ENV(AT_ENV_PTEST, "idx99", 0, NULL);
+    ENV(AT_ENV_PTEST, "idx99", 0, NULL),
 };
 
 static int
