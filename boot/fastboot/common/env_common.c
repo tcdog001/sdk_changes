@@ -408,7 +408,7 @@ change_bootargs(int rootfs)
 static inline char *
 ATENV(int idx)
 {
-    return ((char *)env_ptr->atenv[x]);
+    return ((char *)env_ptr->atenv[idx]);
 }
 
 #define atenv_sprintf(_idx, _fmt, _args...) \
