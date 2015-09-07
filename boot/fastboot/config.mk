@@ -178,7 +178,8 @@ ifneq ($(OBJTREE),$(SRCTREE))
 CPPFLAGS += -I$(OBJTREE)/include2 -I$(OBJTREE)/include
 endif
 
-CPPFLAGS += -I$(TOPDIR)/include -I$(TOPDIR)
+#AUTELAN
+CPPFLAGS += -I$(TOPDIR)/include -I$(TOPDIR) -I$(gccincdir)
 CPPFLAGS += -fno-builtin -ffreestanding -nostdinc	\
 	-isystem $(gccincdir) -pipe $(PLATFORM_CPPFLAGS) $(MKFLAGS)
 

@@ -24,29 +24,29 @@
 #define AT_ENV_ROOTFS1ERR       3
 #define AT_ENV_ROOTFS2          4
 #define AT_ENV_ROOTFS2ERR       5
+
 #define AT_ENV_MAC              6
 #define AT_ENV_SN               7
 #define AT_ENV_BOARDTYPE        8
 #define AT_ENV_BOARDVERSION     9
-#define AT_ENV_ROOTFS0          10
-#define AT_ENV_ROOTFS0ERR       11
-#if 0
+#define AT_ENV_PSN              10
+#define AT_ENV_MID              11
 #define AT_ENV_ROOTFS0VER       12
 #define AT_ENV_ROOTFS1VER       13
 #define AT_ENV_ROOTFS2VER       14
-#endif
 #define AT_ENV_BOOTVER          15
 
 #define AT_ENV_OEM_MAC          36
 #define AT_ENV_OEM_SN           37
 #define AT_ENV_OEM_BOARDTYPE    38
 #define AT_ENV_OEM_BOARDVERSION 39
+
 #define AT_ENV_PRIVATE          40
 
 #define AT_ENV_PTEST            99
 
 #define AT_DEFT_INIT            "f00d1e"
-#define AT_DEFT_BOOTVER         "1.1"
+#define AT_DEFT_BOOTVER         "1.2"
 #define AT_DEFT_ROOTFS          "1"
 #define AT_DEFT_ROOTFS0         "o"
 #define AT_DEFT_ROOTFS1         "o"
@@ -64,11 +64,11 @@
 #define AT_NAME_ROOTFS0ERR          "rootfs0err"
 #define AT_NAME_ROOTFS1ERR          "rootfs1err"
 #define AT_NAME_ROOTFS2ERR          "rootfs2err"
-#if 0
 #define AT_NAME_ROOTFS0VER          "rootfs0ver"
 #define AT_NAME_ROOTFS1VER          "rootfs1ver"
 #define AT_NAME_ROOTFS2VER          "rootfs2ver"
-#endif
+#define AT_NAME_PSN                 "psn"
+#define AT_NAME_MID                 "mid"
 #define AT_NAME_MAC                 "pcba.mac"
 #define AT_NAME_SN                  "pcba.sn"
 #define AT_NAME_BOARDTYPE           "pcba.type"

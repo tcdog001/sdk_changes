@@ -62,6 +62,9 @@
 #endif /* CONFIG_LZO */
 
 #include <bootimg.h>
+#ifdef AUTELAN
+#include "atdog/atdog.h"
+#endif
 
 DECLARE_GLOBAL_DATA_PTR;
 
@@ -211,10 +214,18 @@ static void bootm_start_lmb(void)
 #endif
 }
 
+#ifdef AUTELAN
+static at_reg_t dog_enable[] = AT_REG_DOG_ENABLE;
+#endif
+
 static int bootm_start(cmd_tbl_t *cmdtp, int flag, int argc, char *argv[])
 {
 	void		*os_hdr;
 	int		ret;
+	
+#ifdef AUTELAN
+    at_reg_write(dog_enable);
+#endif
 
 	memset ((void *)&images, 0, sizeof (images));
 	images.verify = getenv_yesno ("verify");

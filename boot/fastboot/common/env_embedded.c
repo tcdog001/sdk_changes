@@ -105,7 +105,6 @@ env_t environment __PPCENV__ = {
         [AT_ENV_BOOTVER]    = AT_DEFT_BOOTVER,
         [AT_ENV_ROOTFS]     = AT_DEFT_ROOTFS,
         
-        [AT_ENV_ROOTFS0]    = AT_DEFT_ROOTFS0,
         [AT_ENV_ROOTFS1]    = AT_DEFT_ROOTFS1,
         [AT_ENV_ROOTFS2]    = AT_DEFT_ROOTFS2,
         

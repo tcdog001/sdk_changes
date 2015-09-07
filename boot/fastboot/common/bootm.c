@@ -120,6 +120,8 @@ static struct {
     
     ENV(AT_ENV_INIT,    AT_NAME_INIT,       ENV_HIDDEN | ENV_READONLY, NULL),
     ENV(AT_ENV_BOOTVER, AT_NAME_BOOTVER,    ENV_HIDDEN | ENV_READONLY,  NULL),
+    ENV(AT_ENV_PSN,     AT_NAME_PSN,        ENV_HIDDEN | ENV_READONLY,  NULL),
+    ENV(AT_ENV_MID,     AT_NAME_MID,        ENV_HIDDEN | ENV_READONLY,  NULL),
     
     ENV(AT_ENV_OEM_MAC,         AT_NAME_OEM_MAC,            ENV_HIDDEN, NULL),
     ENV(AT_ENV_OEM_SN,          AT_NAME_OEM_SN,             ENV_HIDDEN, NULL),
@@ -133,11 +135,9 @@ static struct {
     
     ENV(AT_ENV_ROOTFS,      AT_NAME_ROOTFS,     0,  env_rootfs_check),
     
-    ENV(AT_ENV_ROOTFS0,     AT_NAME_ROOTFS0,    0,  env_rootfsx_check),
     ENV(AT_ENV_ROOTFS1,     AT_NAME_ROOTFS1,    0,  env_rootfsx_check),
     ENV(AT_ENV_ROOTFS2,     AT_NAME_ROOTFS2,    0,  env_rootfsx_check),
     
-    ENV(AT_ENV_ROOTFS0ERR,  AT_NAME_ROOTFS0ERR, 0,  env_rootfsxerr_check),
     ENV(AT_ENV_ROOTFS1ERR,  AT_NAME_ROOTFS1ERR, 0,  env_rootfsxerr_check),
     ENV(AT_ENV_ROOTFS2ERR,  AT_NAME_ROOTFS2ERR, 0,  env_rootfsxerr_check),
 

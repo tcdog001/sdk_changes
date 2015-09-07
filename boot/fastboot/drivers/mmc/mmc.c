@@ -659,6 +659,13 @@ int mmc_startup(struct mmc *mmc)
 		return err;
 
 	memcpy(mmc->cid, cmd.response, 16);
+#ifdef AUTELAN
+    {
+        extern unsigned int emmc_cid[4];
+
+        memcpy(emmc_cid, mmc->cid, 16);
+    }
+#endif
 
 	/*
 	 * For MMC cards, set the Relative Address.

@@ -109,6 +109,9 @@ static void print_mmcinfo(struct mmc *mmc)
 	printf("Name: %c%c%c%c%c \n", mmc->cid[0] & 0xff,
 			(mmc->cid[1] >> 24), (mmc->cid[1] >> 16) & 0xff,
 			(mmc->cid[1] >> 8) & 0xff, mmc->cid[1] & 0xff);
+#ifdef AUTELAN
+    printf("PSN: 0x%x\n", ((mmc->cid[2] & 0xffff) << 16) | (mmc->cid[3] >> 16));
+#endif
 
 	printf("Tran Speed: %d\n", mmc->tran_speed);
 	printf("Rd Block Len: %d\n", mmc->read_bl_len);

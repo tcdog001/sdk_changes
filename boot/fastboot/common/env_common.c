@@ -281,6 +281,11 @@ void set_default_env(void)
 
 #ifdef AUTELAN
 
+unsigned int emmc_cid[4];
+
+#define cid_psn(_cid)   (((_cid[2] & 0xffff) << 16) | (_cid[3] >> 16))
+#define cid_mid(_cid)   (_cid[0] >> 24)
+
 static char *
 get_first_env(void)
 {
@@ -400,7 +405,15 @@ change_bootargs(int rootfs)
     return env;
 }
 
-#define ATENV(x)        ((char *)env_ptr->atenv[x])
+static inline char *
+ATENV(int idx)
+{
+    return ((char *)env_ptr->atenv[x]);
+}
+
+#define atenv_sprintf(_idx, _fmt, _args...) \
+    snprintf(ATENV(_idx), AT_ENV_LINE_SIZE-1, _fmt, ##_args)
+
 #define ATENV_0(x)      ATENV(x)[0]
 
 static inline int 
@@ -557,11 +570,9 @@ rootfs_init(void)
     atenv_init(AT_ENV_BOOTVER,      AT_DEFT_BOOTVER);
     atenv_init(AT_ENV_ROOTFS,       AT_DEFT_ROOTFS);
     
-    atenv_init(AT_ENV_ROOTFS0,      AT_DEFT_ROOTFS0);
     atenv_init(AT_ENV_ROOTFS1,      AT_DEFT_ROOTFS1);
     atenv_init(AT_ENV_ROOTFS2,      AT_DEFT_ROOTFS2);
     
-    atenv_init(AT_ENV_ROOTFS0ERR,   AT_DEFT_ROOTFS0ERR);
     atenv_init(AT_ENV_ROOTFS1ERR,   AT_DEFT_ROOTFS1ERR);
     atenv_init(AT_ENV_ROOTFS2ERR,   AT_DEFT_ROOTFS2ERR);
 }
@@ -576,6 +587,9 @@ rootfs_try_init(void)
 
         rootfs_init();
     }
+
+    atenv_sprintf(AT_ENV_PSN, "%d", cid_psn(emmc_cid));
+    atenv_sprintf(AT_ENV_MID, "%d", cid_mid(emmc_cid));
 }
 
 static void 

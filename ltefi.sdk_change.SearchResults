@@ -1,0 +1,10 @@
+---- snprintf Matches (9 in 2 files) ----
+Cmd_bootm.c (boot\fastboot\common):		snprintf(buf, sizeof(buf), "%lX", images.os.image_len);
+Cmd_bootm.c (boot\fastboot\common):			snprintf(str, sizeof(str), "%lx", images.initrd_start);
+Cmd_bootm.c (boot\fastboot\common):			snprintf(str, sizeof(str), "%lx", images.initrd_end);
+Cmd_bootm.c (boot\fastboot\common):				snprintf(str, sizeof(str),
+Cmd_bootm.c (boot\fastboot\common):	snprintf(str, sizeof(str), "%lx", images->ep); /* write entry-point into string */
+Cmd_bootm.c (boot\fastboot\common):	snprintf(str, sizeof(str), "%lx", images->ep); /* write entry-point into string */
+Mmc.c (boot\fastboot\drivers\mmc):	snprintf(mmc->block_dev.vendor, sizeof(mmc->block_dev.vendor),
+Mmc.c (boot\fastboot\drivers\mmc):	snprintf(mmc->block_dev.product, sizeof(mmc->block_dev.product),
+Mmc.c (boot\fastboot\drivers\mmc):	snprintf(mmc->block_dev.revision, sizeof(mmc->block_dev.revision),

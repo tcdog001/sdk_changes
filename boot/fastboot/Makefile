@@ -142,7 +142,14 @@ ifneq ($(MERGE_IMAGE_PATH),)
   endif
 endif
 
-MKFLAGS +=-DVERSION=$(VERSION) -DPATCHLEVEL=$(PATCHLEVEL) -DSUBLEVEL=$(SUBLEVEL) -DAUTELAN
+MKFLAGS +=-DVERSION=$(VERSION) -DPATCHLEVEL=$(PATCHLEVEL) -DSUBLEVEL=$(SUBLEVEL) \
+	  -DAUTELAN \
+          -D__FASTBOOT__ \
+          -D__AKID_DEBUG=__boot_debug \
+          -I$(TOPDIR)/common/autelan/lib \
+          -I$(TOPDIR)/common/autelan/app \
+	  #end
+
 export MKFLAGS
 
 # The "tools" are needed early, so put this first
