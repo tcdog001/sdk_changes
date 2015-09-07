@@ -144,6 +144,7 @@ endif
 
 MKFLAGS +=-DVERSION=$(VERSION) -DPATCHLEVEL=$(PATCHLEVEL) -DSUBLEVEL=$(SUBLEVEL) \
 	  -DAUTELAN \
+	  -DAT_PRODUCT=1 \
           -D__FASTBOOT__ \
           -D__AKID_DEBUG=__boot_debug \
           -I$(TOPDIR)/common/autelan/lib \
