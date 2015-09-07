@@ -31,18 +31,19 @@
 #define AT_ENV_BOARDVERSION     9
 #define AT_ENV_PSN              10
 #define AT_ENV_MID              11
-#if 0
-#define AT_ENV_ROOTFS0VER       12
-#define AT_ENV_ROOTFS1VER       13
-#define AT_ENV_ROOTFS2VER       14
-#endif
+#define AT_ENV_RT               12
+
 #define AT_ENV_BOOTVER          15
+#if 0
+#define AT_ENV_ROOTFS0VER       16
+#define AT_ENV_ROOTFS1VER       17
+#define AT_ENV_ROOTFS2VER       18
+#endif
 
 #define AT_ENV_OEM_MAC          36
 #define AT_ENV_OEM_SN           37
 #define AT_ENV_OEM_BOARDTYPE    38
 #define AT_ENV_OEM_BOARDVERSION 39
-
 #define AT_ENV_PRIVATE          40
 
 #define AT_ENV_PTEST            99
@@ -50,10 +51,8 @@
 #define AT_DEFT_INIT            "f00d1e"
 #define AT_DEFT_BOOTVER         "1.2"
 #define AT_DEFT_ROOTFS          "1"
-#define AT_DEFT_ROOTFS0         "o"
 #define AT_DEFT_ROOTFS1         "o"
 #define AT_DEFT_ROOTFS2         "o"
-#define AT_DEFT_ROOTFS0ERR      "0"
 #define AT_DEFT_ROOTFS1ERR      "0"
 #define AT_DEFT_ROOTFS2ERR      "0"
 
@@ -71,6 +70,7 @@
 #endif
 #define AT_NAME_PSN                 "psn"
 #define AT_NAME_MID                 "mid"
+#define AT_NAME_RT                  "rt"
 #define AT_NAME_MAC                 "pcba.mac"
 #define AT_NAME_SN                  "pcba.sn"
 #define AT_NAME_BOARDTYPE           "pcba.type"
