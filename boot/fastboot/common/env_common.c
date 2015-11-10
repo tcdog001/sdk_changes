@@ -31,6 +31,8 @@
 #include <malloc.h>
 #ifdef AUTELAN
 #include <mmc.h>
+#include "atenv/atenv.h"
+#include "atdog/atdog.h"
 #include "bootm/bootm.h"
 #endif
 DECLARE_GLOBAL_DATA_PTR;
@@ -241,7 +243,6 @@ void set_default_env(void)
 }
 
 #ifdef AUTELAN
-#include "atdog/atdog.h"
 static at_reg_t dog_enable[] = AT_REG_DOG_ENABLE;
 
 unsigned int emmc_cid[4];
