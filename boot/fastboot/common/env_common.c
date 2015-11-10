@@ -31,7 +31,6 @@
 #include <malloc.h>
 #ifdef AUTELAN
 #include <mmc.h>
-#include "atenv/atenv.h"
 #include "atdog/atdog.h"
 #include "bootm/bootm.h"
 #endif
