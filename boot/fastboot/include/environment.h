@@ -120,7 +120,7 @@
 #include "compiler.h"
 
 #ifdef AUTELAN
-#include "../common/bootm.h"
+#include "bootm/bootm.h"
 #endif
 
 #ifdef CONFIG_SYS_REDUNDAND_ENVIRONMENT
