@@ -540,8 +540,6 @@ rootfs_init(void)
 static void 
 rootfs_try_init(void) 
 {
-    void *p = dog_enable; p--; /* do nothing */
-    
     rootfs_dump();
     
     if (0!=memcmp(ATENV(AT_ENV_INIT), AT_DEFT_INIT, strlen(AT_DEFT_INIT))) {
