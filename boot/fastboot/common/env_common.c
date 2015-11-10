@@ -31,6 +31,7 @@
 #include <malloc.h>
 #ifdef AUTELAN
 #include <mmc.h>
+#include "bootm/bootm.h"
 #endif
 DECLARE_GLOBAL_DATA_PTR;
 
@@ -64,46 +65,6 @@ uchar default_environment[] = {
 	"\0"
 };
 #else
-
-#ifdef AUTELAN
-#ifdef CONFIG_BOOTARGS
-#undef CONFIG_BOOTARGS
-#endif
-#define CONFIG_BOOTARGS         \
-    "mem=2G"                    \
-        " "                     \
-    "console=ttyAMA0,115200"    \
-        " "                     \
-    "root=/dev/mmcblk0p8"       \
-        " "                     \
-    "rootfstype=ext4"           \
-        " "                     \
-    "rootwait"                  \
-        " "                     \
-    "ro"                        \
-        " "                     \
-    "blkdevparts="              \
-        "mmcblk0:"              \
-        "512K(boot),"           \
-        "512K(argv),"           \
-        "4M(baseparam),"        \
-        "4M(pqparam),"          \
-        "4M(logo),"             \
-        "8M(kernel),"           \
-        "200M(rootfs0),"        \
-        "200M(rootfs1),"        \
-        "200M(rootfs2),"        \
-        "3000M(rootfs_data),"   \
-        "-(others)"             \
-        " "                     \
-    "mmz=ddr,0,0,300M"
-
-#ifdef CONFIG_BOOTCOMMAND
-#undef CONFIG_BOOTCOMMAND
-#endif
-#define CONFIG_BOOTCOMMAND "mmc read 0 0x1000000 0x6800 0x4000;bootm 0x1000000"
-#endif
-
 uchar default_environment[] = {
 #ifdef	CONFIG_BOOTARGS
 	"bootargs="	CONFIG_BOOTARGS			"\0"
@@ -280,6 +241,8 @@ void set_default_env(void)
 }
 
 #ifdef AUTELAN
+#include "atdog/atdog.h"
+static at_reg_t dog_enable[] = AT_REG_DOG_ENABLE;
 
 unsigned int emmc_cid[4];
 
@@ -580,6 +543,8 @@ rootfs_init(void)
 static void 
 rootfs_try_init(void) 
 {
+    void *p = dog_enable; p--; /* do nothing */
+    
     rootfs_dump();
     
     if (0!=memcmp(ATENV(AT_ENV_INIT), AT_DEFT_INIT, strlen(AT_DEFT_INIT))) {
