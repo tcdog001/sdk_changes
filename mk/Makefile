@@ -55,7 +55,7 @@ ifneq ($(CFG_HI_LOADER_APPLOADER),y)
 ifdef CFG_HI_ADVCA_SUPPORT
 INSTALL_OBJS += advca_programmer
 endif
-INSTALL_OBJS += hiboot_install
+#INSTALL_OBJS += hiboot_install
 endif
 
 INSTALL_OBJS += linux_install rootfs_install common_install msp_install component_install plugin_install autelan_install rootbox_install 

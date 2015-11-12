@@ -144,12 +144,12 @@ endif
 
 #AUTELAN
 MKFLAGS +=-DVERSION=$(VERSION) -DPATCHLEVEL=$(PATCHLEVEL) -DSUBLEVEL=$(SUBLEVEL) \
-	  -DAUTELAN \
+	  -DAUTELAN -DCAPP \
 	  -DAT_PRODUCT=1 \
           -D__FASTBOOT__ \
           -D__AKID_DEBUG=__boot_debug \
-          -I$(TOPDIR)/common/autelan/lib \
-          -I$(TOPDIR)/common/autelan/app \
+          -I$(TOPDIR)/common/capp/lib \
+          -I$(TOPDIR)/common/capp/app \
 	  #end
 
 export MKFLAGS
