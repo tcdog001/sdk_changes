@@ -2,7 +2,6 @@
 #    ./Makefile
 #    Create By CaiZhiyong
 #
-
 ################################################################################
 # Compiler:    
 #     make CROSS_COMPILE=arm-hisiv200-linux- PREFIX=~/tftp/
@@ -125,7 +124,7 @@ MKFLAGS     := PREFIX=$(ROOTFS) CROSS_COMPILE=$(CROSS_COMPILE) \
 PHONYS      :=
 
 ################################################################################
-TOOLS-y := scripts busybox
+TOOLS-y := busybox
 
 TOOLS-$(CONFIG_TOOL_DOSFS)          += dosfstools
 TOOLS-$(CONFIG_TOOL_E2FSPROGS)      += e2fsprogs
