@@ -126,28 +126,28 @@ PHONYS      :=
 ################################################################################
 TOOLS-y := busybox
 
-TOOLS-$(CONFIG_TOOL_DOSFS)          += dosfstools
-TOOLS-$(CONFIG_TOOL_E2FSPROGS)      += e2fsprogs
-TOOLS-$(CONFIG_TOOL_FILECAP)        += filecap
-TOOLS-$(CONFIG_TOOL_GDB)            += gdb
-TOOLS-$(CONFIG_TOOL_IPTABLES)       += iptables
-TOOLS-$(CONFIG_TOOL_MTD_UTILS)      += mtd-utils
-TOOLS-$(CONFIG_TOOL_REG)            += reg-tools-1.0.0
-TOOLS-$(CONFIG_TOOL_REG_UART)       += reg-tools-uart
-TOOLS-$(CONFIG_TOOL_SANDBOX)        += sandbox
-TOOLS-$(CONFIG_TOOL_TOP)            += top
-TOOLS-$(CONFIG_TOOL_SANDBOX)        += sandbox
-TOOLS-$(CONFIG_TOOL_UDEV)           += udev
-TOOLS-$(CONFIG_TOOL_PPPD)           += pppd
-TOOLS-$(CONFIG_TOOL_SOC_SERVER)     += soc_server
-TOOLS-$(CONFIG_TOOL_MII_TOOLS)      += mii-tool
-TOOLS-$(CONFIG_TOOL_IPERF)          += iperf
+#TOOLS-$(CONFIG_TOOL_DOSFS)          += dosfstools
+#TOOLS-$(CONFIG_TOOL_E2FSPROGS)      += e2fsprogs
+#TOOLS-$(CONFIG_TOOL_FILECAP)        += filecap
+#TOOLS-$(CONFIG_TOOL_GDB)            += gdb
+#TOOLS-$(CONFIG_TOOL_IPTABLES)       += iptables
+#TOOLS-$(CONFIG_TOOL_MTD_UTILS)      += mtd-utils
+#TOOLS-$(CONFIG_TOOL_REG)            += reg-tools-1.0.0
+#TOOLS-$(CONFIG_TOOL_REG_UART)       += reg-tools-uart
+#TOOLS-$(CONFIG_TOOL_SANDBOX)        += sandbox
+#TOOLS-$(CONFIG_TOOL_TOP)            += top
+#TOOLS-$(CONFIG_TOOL_SANDBOX)        += sandbox
+#TOOLS-$(CONFIG_TOOL_UDEV)           += udev
+#TOOLS-$(CONFIG_TOOL_PPPD)           += pppd
+#TOOLS-$(CONFIG_TOOL_SOC_SERVER)     += soc_server
+#TOOLS-$(CONFIG_TOOL_MII_TOOLS)      += mii-tool
+#TOOLS-$(CONFIG_TOOL_IPERF)          += iperf
 
-TOOLS-$(CONFIG_MSP_DEBUG)           += msp_debug
-TOOLS-$(CONFIG_PQ_DEBUG)            += pq_debug
-TOOLS-$(CONFIG_LXC_CONTAINER)       += lxc
-TOOLS-$(CONFIG_TOOL_SYSSTAT)        += sysstat
-TOOLS-$(CONFIG_TOOL_MEMTESTER)        += memtester
+#TOOLS-$(CONFIG_MSP_DEBUG)           += msp_debug
+#TOOLS-$(CONFIG_PQ_DEBUG)            += pq_debug
+#TOOLS-$(CONFIG_LXC_CONTAINER)       += lxc
+#TOOLS-$(CONFIG_TOOL_SYSSTAT)        += sysstat
+#TOOLS-$(CONFIG_TOOL_MEMTESTER)        += memtester
 ################################################################################
 
 PHONYS += all
